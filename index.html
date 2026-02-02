@@ -121,9 +121,10 @@ button{
 </div>
 
 <!-- Background Music -->
-<audio id="bgMusic">
+<audio id="bgMusic" preload="auto">
   <source src="music.mp3" type="audio/mpeg">
 </audio>
+
 
 <script>
 const noBtn=document.getElementById('noBtn');
@@ -132,14 +133,19 @@ const msg=document.getElementById('msg');
 const music=document.getElementById('bgMusic');
 
 // YES button action
-yesBtn.onclick=()=>{
-    msg.style.display='block';
-    yesBtn.style.display='none';
-    noBtn.style.display='none';
+yesBtn.onclick = () => {
+    msg.style.display = 'block';
+    yesBtn.style.display = 'none';
+    noBtn.style.display = 'none';
     confettiBurst();
-    music.volume = 0.6;
-    music.play();
+
+    music.currentTime = 0;
+    music.volume = 0.7;
+    music.play().catch((e) => {
+        console.log(e);
+    });
 };
+
 
 // NO button runs away
 noBtn.addEventListener('mouseover',()=>{
